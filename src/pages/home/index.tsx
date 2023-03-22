@@ -39,7 +39,6 @@ const Home = () => {
           <StyledPagination
             pageCount={data.totalPages}
             pageRangeDisplayed={7}
-            initialPage={data.page}
             breakLabel=""
             marginPagesDisplayed={0}
             onPageChange={data.handlePageChange}
