@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/goit/static/js/main.66ea1943.js",
+    "main.js": "/goit/static/js/main.6290ba45.js",
     "static/media/defaultRepoImage.png": "/goit/static/media/defaultRepoImage.aa9d7e6d134b368d14c1.png",
     "index.html": "/goit/index.html",
-    "main.66ea1943.js.map": "/goit/static/js/main.66ea1943.js.map"
+    "main.6290ba45.js.map": "/goit/static/js/main.6290ba45.js.map"
   },
   "entrypoints": [
-    "static/js/main.66ea1943.js"
+    "static/js/main.6290ba45.js"
   ]
 }
