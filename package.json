@@ -1,7 +1,7 @@
 {
   "name": "goit",
   "version": "0.1.0",
-  "homepage": "https://RomanKuzo.github.io/react-gh-pages/goit",
+  "homepage": "https://RomanKuzo.github.io/goit",
   "private": true,
   "dependencies": {
     "@types/node": "^16.7.13",
