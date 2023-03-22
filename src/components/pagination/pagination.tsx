@@ -1,5 +1,5 @@
-import ReactPaginate from "react-paginate";
-import styled from "styled-components";
+import ReactPaginate from 'react-paginate';
+import styled from 'styled-components';
 
 const StyledPagination = styled(ReactPaginate)`
   &&& {
@@ -23,6 +23,9 @@ const StyledPagination = styled(ReactPaginate)`
 
         &:focus {
           outline: none;
+        }
+        &:hover {
+          opacity: 0.3;
         }
       }
     }
