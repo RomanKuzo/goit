@@ -4,6 +4,7 @@
   "homepage": "https://RomanKuzo.github.io/goit",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
@@ -12,6 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-paginate": "^8.1.4",
+    "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.9",
     "typescript": "^4.4.2",

@@ -37,7 +37,11 @@ const Home = () => {
           ))}
 
           <StyledPagination
+            $showPrev={data.page !== 1}
+            $showNext={data.page !== data.totalPages}
             pageCount={data.totalPages}
+            // The pagination package starts counting from 0, so we have to decrease this value by 1
+            forcePage={data.page - 1}
             pageRangeDisplayed={7}
             breakLabel=""
             marginPagesDisplayed={0}

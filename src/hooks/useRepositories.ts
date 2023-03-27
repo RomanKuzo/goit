@@ -1,6 +1,15 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import api from '../services/api';
 import useDebounce from './useDebounce';
+import {
+  setLoading,
+  setPage,
+  setRepositories,
+  setSearch,
+  State,
+} from '../redux/slices/repositories';
 
 type Response = {
   total_count: number;
@@ -22,33 +31,35 @@ export type Repository = {
 };
 
 const useRepositories = () => {
-  const [repositories, setRepositories] = useState<Repository[]>([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [search, setSearch] = useState('');
-  const debouncedSearch = useDebounce<string>(search, 500);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const state = useSelector(
+    (state: { repositories: State }) => state.repositories,
+  );
+
+  const debouncedSearch = useDebounce<string>(state.search, 500);
 
   const getRepository = useCallback(async () => {
-    setLoading(true);
+    dispatch(setLoading(true));
     try {
       const response = await api.get<Response>('search/repositories', {
         params: {
-          page: page,
+          page: state.page,
           per_page: 20,
           q: debouncedSearch.length > 0 ? debouncedSearch : 'react',
         },
       });
 
       if (response.data) {
-        setRepositories(response.data.items);
-        setTotalPages(Math.ceil(response.data.total_count / 20));
+        dispatch(
+          setRepositories({
+            repositories: response.data.items,
+            total: Math.ceil(response.data.total_count / 20),
+          }),
+        );
       } else {
-        setLoading(false);
+        dispatch(setLoading(false));
         throw Error('Problem with getting data');
       }
-
-      setLoading(false);
     } catch (e) {
       var message = 'Something went wrong, please try again';
       if (typeof e === 'string') {
@@ -58,28 +69,29 @@ const useRepositories = () => {
       }
 
       alert(message);
-      setLoading(false);
+      dispatch(setLoading(false));
     }
-  }, [debouncedSearch, page]);
+  }, [debouncedSearch, dispatch, state.page]);
 
   useEffect(() => {
     getRepository();
   }, [getRepository]);
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) =>
-    setSearch(event.target.value);
+    dispatch(setSearch(event.target.value));
 
   const handlePageChange = (selectedItem: { selected: number }) => {
-    setPage(selectedItem.selected);
+    // The pagination package starts counting from 0, so we have to increase this value by 1
+    dispatch(setPage(selectedItem.selected + 1));
   };
 
   return {
-    repositories,
-    page,
-    loading,
-    totalPages,
+    loading: state.loading,
+    repositories: state.repositories,
     handlePageChange,
     handleSearch,
+    totalPages: state.totalPages,
+    page: state.page,
   };
 };
 

@@ -1,11 +1,23 @@
 import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
 
-const StyledPagination = styled(ReactPaginate)`
+const StyledPagination = styled(ReactPaginate)<{
+  $showPrev: boolean;
+  $showNext: boolean;
+}>`
   &&& {
     text-align: center;
     font-family: Archivo, sans-serif;
     font-weight: 600;
+
+    a[rel='prev'] {
+      display: ${({ $showPrev }) => ($showPrev ? 'inline-bloc' : 'none')};
+    }
+
+    a[rel='next'] {
+      display: ${({ $showNext }) => ($showNext ? 'inline-bloc' : 'none')};
+    }
+
     > ul {
       padding: 0;
       margin: 0;
