@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/goit/static/js/main.b92efb4f.js",
+    "main.js": "/goit/static/js/main.13e51d3c.js",
     "static/media/defaultRepoImage.png": "/goit/static/media/defaultRepoImage.aa9d7e6d134b368d14c1.png",
     "index.html": "/goit/index.html",
-    "main.b92efb4f.js.map": "/goit/static/js/main.b92efb4f.js.map"
+    "main.13e51d3c.js.map": "/goit/static/js/main.13e51d3c.js.map"
   },
   "entrypoints": [
-    "static/js/main.b92efb4f.js"
+    "static/js/main.13e51d3c.js"
   ]
 }
